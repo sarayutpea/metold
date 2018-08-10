@@ -1,19 +1,31 @@
 <template>
     <div id="profile">
-
+      <v-btn fab dark color="blue" @click="test()">
+       <v-icon>edit</v-icon>
+      </v-btn>
     </div>
 </template>
 <script>
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 import  * as firebaseui from 'firebaseui'
 export default {
     name: 'Profile',
+    methods:{
+      test(){
+        firebase.auth().currentUser.getIdToken(true).then(function(idToken) {
+          // Send token to your backend via HTTPS
+          // ...
+          console.log(idToken);
+        }).catch(function(error) {
+          // Handle error
+        });
+      }
+    },
     mounted(){
         console.log('Profile')
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             // User is signed in.
-            console.log(user);
             var displayName = user.displayName;
             var email = user.email;
             var emailVerified = user.emailVerified;
@@ -22,6 +34,7 @@ export default {
             var phoneNumber = user.phoneNumber;
             var providerData = user.providerData;
             user.getIdToken().then(function(accessToken) {
+                console.log(accessToken);
             //   document.getElementById('sign-in-status').textContent = 'Signed in';
             //   document.getElementById('sign-in').textContent = 'Sign out';
             //   document.getElementById('account-details').textContent = JSON.stringify({

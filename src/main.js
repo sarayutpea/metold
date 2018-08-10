@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 import  * as firebaseui from 'firebaseui'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 
 // Component list
 import Home from  './Index.vue'
@@ -13,6 +15,9 @@ Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(firebase)
 Vue.use(firebaseui)
+Vue.use(Vuetify, {
+  iconfont: 'mdi' // 'md' || 'mdi' || 'fa' || 'fa4'
+})
 
 const routes = [
   { path: '/', component: Home },
