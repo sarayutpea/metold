@@ -5,7 +5,16 @@
 </template>
 <script>
 export default {
-    name: "Home"
+    name: "Home",
+    data:()=>({
+        a: ""
+    }),
+    methods:{
+        
+    },
+    mounted(){
+        
+    }
 }
 </script>
 
